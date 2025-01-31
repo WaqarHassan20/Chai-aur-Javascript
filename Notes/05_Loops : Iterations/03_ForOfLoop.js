@@ -26,31 +26,30 @@ map.set("g", "gammma");
 console.log(map);
 console.log(map.get("a")); //alpha
 
-// for (const key of map) {
-//   console.log(key); //gives us all the values in an array
-// }
+for (const key of map) {
+  console.log(key); //gives us all the values in an array
+}
 for (const [key, value] of map) {
-  //Use this syntax to get value or key individually from the Map
+  // Use this syntax to get value or key individually from the Map
   console.log(key, ":-", value);
 }
 
 //Iteration from objects
 
-// const myObject = {
-//   'game1': "freefire",
-//   'game2': "pubg",
-// };
-
 const myObject = {
   game1: "freefire",
-  game2: "pubg", //Still not iterable
+  game2: "pubg",
 };
 
+// const myObject = {
+//   game1: "freefire",
+//   game2: "pubg", //Still not iterable
+// };
+
 // for (const game of myObject) {
-//   console.log(game); // Objects are Not iterateable by usnig for of loop
+  // console.log(game); // Objects are Not iterateable by usnig for of loop
 // }
 
 // for (const [key, value] of myObject) {
-//     console.log(key, ':-', value);
-    
+  // console.log(key, ":-", value);
 // }
