@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>html Events</title>
+  </head>
+
+  <body style="background-color: #414141; color: aliceblue">
+    <h2>Amazing image</h2>
+    <div>
+      <ul id="images">
+        <li>
+          <img
+            width="200px"
+            id="photoshop"
+            src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt="photoshop"
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            id="japan"
+            src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt=""
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            id="river"
+            src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt=""
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            id="owl"
+            src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt=""
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            id="prayer"
+            src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt=""
+          />
+        </li>
+        <li>
+          <a style="color: aliceblue" href="https://google.com" id="google"
+            >Google</a
+          >
+        </li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    //IN js all the events run in squential form/squentially bcz js is squiential language but there  are some exceptions like asyancronous programing.
+    //Activity on browser by user is called events.
+
+    // document.querySelector('#owl').onclick = function () {
+    //     alert("owl clicked");  //this appraoch doesn't gives us alot information.It doesn't tell us about propogation.
+    // }
+
+    //Two types of events 1)-->Browser Events and Enviroment events
+    //attachEvent(),In jQuery--->on
+
+    //typeEvents  -->keyup,keydown,keypress....mousedown,mouseup,click
+    //defaultPrevented --> reads only the property of the Event interface return a bolean value indicating whether or not the call to event.preventDefault() canceled the event .
+    //TimeStamp --> read only property of the event interface returns the time(in miliseconds) at which the event was created.
+    //currentTarget-->read only property of event interface identifies the element to which the event handler has been attached
+    //target -->read only target property of the Event interface is a refrence to the object onto which the event was dispatched
+    //toElement --> the toElement property retrieves the element that the mouse pointer entered.
+    //srcElement -->The deprecated Event.srcElement is an alias for the Event.target property. Use Event.target instead
+    //clientX -->The clientX read-only property of the MouseEvent interface provides the horizontal coordinate within the application's viewport at which the event occurred (as opposed to the coordinate within the page).
+    //clientY -->The clientY read-only property of the MouseEvent interface provides the vertical coordinate within the application's viewport at which the event occurred (as opposed to the coordinate within the page)
+    //screenX -->The screenX read-only property of the MouseEvent interface provides the horizontal coordinate (offset) of the mouse pointer in screen coordinates.
+    //screenY -->The screenY read-only property of the MouseEvent interface provides the vertical coordinate (offset) of the mouse pointer in screen coordinates.
+    //tiltX -->The tiltX read-only property of the PointerEvent interface is the angle (in degrees) between the Y-Z plane of the pointer and the screen. This property is typically only useful for a pen/stylus pointer type
+    //tiltY -->The tiltY read-only property of the PointerEvent interface is the angle (in degrees) between the X-Z plane of the pointer and the screen. This property is typically only useful for a pen/stylus pointer type.
+    //altkey--->The KeyboardEvent.altKey read-only property is a boolean value that indicates if the alt key (Option or ⌥ on macOS) was pressed (true) or not (false) when the event occurred
+    //ctrlkey---->The KeyboardEvent.ctrlKey read-only property is a boolean value that indicates if the ctrl key  was pressed (true) or not (false) when the event occurred
+    //shiftkey--->The KeyboardEvent.shiftKey read-only property is a boolean value that indicates if the shift key  was pressed (true) or not (false) when the event occurred
+    //keycode----->The deprecated KeyboardEvent.keyCode read-only property represents a system and implementation dependent numerical code identifying the unmodified value of the pressed key.
+
+    //Event Propogation(true-->capturing)(false-->bubbling);
+    //This refers to the journey of the event as it travels through the different elements on the page.
+
+    //There are two main phases of event propagation:
+    //Capturing Phase (Less Common): In this phase, the event first goes down the Document Object Model (DOM) tree, starting from the root element (usually the entire document) and traveling towards the target element (the element where the event originated). Event handlers at this stage are less frequently used.
+    //Bubbling Phase (Default): This is the more common phase. The event starts at the target element and then "bubbles up" through its ancestor elements in the DOM tree until it reaches the root. Event listeners along the way can be set to perform actions on the event.
+
+    //EVENT BUBBLING
+    // document.querySelector('#images').addEventListener('click', () => {
+    //     console.log('clicked inside of the ul');
+    // }, false)
+
+    // document.getElementById('owl').addEventListener('click', function (e) {
+    //     console.log('clicked on owl');
+    //     e.stopPropagation();
+    // }, false) //by default it is false that's why we don't need to write it .
+
+    // //EVENT CAPTURING
+    // document.querySelector("#images").addEventListener('click', () => {
+    //     console.log('clicked inside of ul');
+    // }, true);
+    // document.querySelector('#owl').addEventListener('click', () => {
+    //     console.log('owl clicked');
+    // }, true);
+
+    // //PREVENT DEFAULT
+
+    // document.querySelector('#google').addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     console.log('google click');
+    // },false);
+
+    document.querySelector("#images").addEventListener(
+      "click",
+      (e) => {
+        console.log(e.target.tagName);
+        if (e.target.tagName === "IMG") {
+          console.log(e.target.id);
+          let removeIt = e.target.parentNode; //event ka jo parent node hai usko remove kardo
+          removeIt.remove();
+        }
+        // removeIt.parentNode.removeChild(removeIt);
+      },
+      false
+    );
+  </script>
+</html>

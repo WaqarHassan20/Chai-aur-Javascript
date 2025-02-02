@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>chai aur code</h1>
+    <button id="stop">stop</button>
+  </body>
+  <script>
+    //js is used as syncronous programming language in engeins but in runtime enviroment like node js dino js bun js it is used asyancronous programing language and single threaded(default js)
+
+    // EXECUTION COTEXT
+    //Execute one line of code at a time ...Each operation waits for the last one to complete before executing
+
+    //BLOCKING VS NON BLOCKING CODE
+
+    //BLOCKING CODE ---->Read file sync...e.g.yaha par bethe raho jab tak main wapis nai ata
+    //NON-BLOCKING CODE--->Read file async ..e.g.jab tak mai wapis nai ata tab tak apna kam karlo
+
+    const sayHitesh = () => {
+      console.log("hitesh");
+    };
+    const stoping = setTimeout(() => {
+      document.querySelector("h1").innerHTML = "Best JS series";
+    }, 6000);
+    document.querySelector("#stop").addEventListener("click", () => {
+      clearTimeout(stoping);
+      console.log("stopped");
+    });
+  </script>
+</html>
